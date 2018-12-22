@@ -34,7 +34,7 @@ public class ListController {
         return "list";
     }
 
-    @RequestMapping(value = "values")
+    @RequestMapping(value = "/values")
     public String listColumnValues(Model model, @RequestParam String column) {
 
         if (column.equals("all")) {
@@ -52,7 +52,7 @@ public class ListController {
 
     }
 
-    @RequestMapping(value = "jobs")
+    @RequestMapping(value = "/jobs")
     public String listJobsByColumnAndValue(Model model,
             @RequestParam String column, @RequestParam String value) {
 

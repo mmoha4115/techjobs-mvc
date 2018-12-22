@@ -35,9 +35,24 @@
     </form>
 
     <hr />
-
+    <p >Please Enter a Search Parameter</p>
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
-
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Position Type</td>
+            <td>Employer</td>
+            <td>Location</td>
+            <td>Skill</td>
+        </tr>
+        <tr th:each="job : ${jobs}">
+            <td th:text="${job.get('name')}">Name</td>
+            <td th:text="${job.get('position type')}">Position Type</td>
+            <td th:text="${job.get('employer')}">Employer</td>
+            <td th:text="${job.get('location')}">Location</td>
+            <td th:text="${job.get('core competency')}">Skill</td>
+        </tr>
+    </table>
 </div>
 
 </body>
