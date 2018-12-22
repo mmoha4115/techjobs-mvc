@@ -14,27 +14,14 @@ import java.util.HashMap;
  */
 @Controller
 @RequestMapping(value = "list")
-public class ListController {
-
-    static HashMap<String, String> columnChoices = new HashMap<>();
-
-    public ListController () {
-        columnChoices.put("core competency", "Skill");
-        columnChoices.put("employer", "Employer");
-        columnChoices.put("location", "Location");
-        columnChoices.put("position type", "Position Type");
-        columnChoices.put("all", "All");
-    }
+public class ListController extends TechJobsController{
 
     @RequestMapping(value = "")
     public String list(Model model) {
-
-        model.addAttribute("columns", columnChoices);
-
         return "list";
     }
 
-    @RequestMapping(value = "/values")
+    @RequestMapping(value = "values")
     public String listColumnValues(Model model, @RequestParam String column) {
 
         if (column.equals("all")) {
@@ -52,7 +39,7 @@ public class ListController {
 
     }
 
-    @RequestMapping(value = "/jobs")
+    @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model,
             @RequestParam String column, @RequestParam String value) {
 

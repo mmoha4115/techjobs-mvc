@@ -17,11 +17,12 @@ import static org.launchcode.models.JobData.findByValue;
  */
 @Controller
 @RequestMapping("search")
-public class SearchController {
+public class SearchController extends TechJobsController{
 
     @RequestMapping(value = "")
     public String search(Model model) {
         model.addAttribute("columns", ListController.columnChoices);
+        model.addAttribute("all","all");
         return "search";
     }
 
@@ -30,15 +31,16 @@ public class SearchController {
     public String result(Model model,@RequestParam String searchType,@RequestParam String searchTerm){
         ArrayList<HashMap<String,String>> jobs = new ArrayList<>();
         if (!searchTerm.isEmpty()) {
-        if (searchType.equals("all")){
+            if (searchType.equals("all")){
             jobs = findByValue(searchTerm);
         }else {
             jobs = findByColumnAndValue(searchType, searchTerm);
             }
         }
         for(HashMap<String,String> job : jobs) {
-            System.out.println(job.get(searchType));
+            System.out.println((searchType));
         }
+        model.addAttribute("all",searchType);
         model.addAttribute("jobs",jobs);
         model.addAttribute("columns", ListController.columnChoices);
         return "search";
